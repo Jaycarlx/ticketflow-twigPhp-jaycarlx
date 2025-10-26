@@ -1,0 +1,121 @@
+{% extends "base.twig" %}
+
+{% block title %}Dashboard - TicketFlow{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="css/dashboard.css">
+{% endblock %}
+
+{% block body %}
+<div class="dashboard-page">
+    <!-- Navigation -->
+    <nav class="dashboard-nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">TicketFlow</div>
+                <div class="nav-right">
+                    <span class="user-email">{{ user.email }}</span>
+                    <a href="logout.php" class="btn btn-outline-danger">
+                        Log Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="dashboard-content">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Dashboard</h1>
+                <p>Welcome back! Here's an overview of your tickets.</p>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card total">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <h3 id="totalTickets">0</h3>
+                        <p>Total Tickets</p>
+                    </div>
+                </div>
+
+                <div class="stat-card open">
+                    <div class="stat-icon">🟢</div>
+                    <div class="stat-info">
+                        <h3 id="openTickets">0</h3>
+                        <p>Open Tickets</p>
+                    </div>
+                </div>
+
+                <div class="stat-card in-progress">
+                    <div class="stat-icon">🟡</div>
+                    <div class="stat-info">
+                        <h3 id="inProgressTickets">0</h3>
+                        <p>In Progress</p>
+                    </div>
+                </div>
+
+                <div class="stat-card closed">
+                    <div class="stat-icon">⚪</div>
+                    <div class="stat-info">
+                        <h3 id="closedTickets">0</h3>
+                        <p>Closed Tickets</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="dashboard-actions">
+                <button class="btn btn-primary btn-large" onclick="window.location.href='tickets.php'">
+                    Manage Tickets →
+                </button>
+            </div>
+
+            <!-- Info Box -->
+            <div class="info-box">
+                <h3>🎯 Quick Start Guide</h3>
+                <ul>
+                    <li>Click "Manage Tickets" to view all your tickets</li>
+                    <li>Create new tickets to track issues or tasks</li>
+                    <li>Update ticket status: Open → In Progress → Closed</li>
+                    <li>Edit or delete tickets as needed</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="container">
+            <p>&copy; 2025 TicketFlow. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+// Load tickets from localStorage and calculate stats
+function loadStats() {
+    const ticketsStr = localStorage.getItem('ticketapp_tickets');
+    const tickets = ticketsStr ? JSON.parse(ticketsStr) : [];
+    
+    const stats = {
+        total: tickets.length,
+        open: tickets.filter(t => t.status === 'open').length,
+        inProgress: tickets.filter(t => t.status === 'in_progress').length,
+        closed: tickets.filter(t => t.status === 'closed').length
+    };
+    
+    document.getElementById('totalTickets').textContent = stats.total;
+    document.getElementById('openTickets').textContent = stats.open;
+    document.getElementById('inProgressTickets').textContent = stats.inProgress;
+    document.getElementById('closedTickets').textContent = stats.closed;
+}
+
+// Load stats on page load
+loadStats();
+</script>
+{% endblock %}

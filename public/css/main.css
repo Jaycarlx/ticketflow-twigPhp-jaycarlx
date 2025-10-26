@@ -1,0 +1,210 @@
+:root {
+  /* Font */
+  --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  /* Core colors */
+  --color-text: #333333;
+  --color-white: #ffffff;
+  --color-primary: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-hero-start: #667eea;
+  --color-hero-end: #764ba2;
+  --color-bg-features: #f8f9ff;
+  --color-heading: #1f2937;
+  --color-muted: #6b7280;
+
+  /* Gradient helper */
+  --gradient-primary: linear-gradient(135deg, var(--color-hero-start) 0%, var(--color-hero-end) 100%);
+
+  /* Circle gradient (lighter) */
+  --color-circle-gradient-start: rgba(102, 126, 234, 0.1);
+  --color-circle-gradient-end: rgba(118, 75, 162, 0.1);
+
+  /* Shadows */
+  --shadow-xs: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-accent: 0 5px 15px rgba(99, 102, 241, 0.3);
+
+  /* Feature card shadows */
+  --feature-shadow-normal: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --feature-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+  /* Stat card shadow */
+  --stat-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+
+  /* Sizes / spacing */
+  --container-max-width: 1440px;
+  --border-radius-lg: 16px;
+  --btn-radius: 8px;
+  --hero-padding-top: 100px;
+  --hero-padding-bottom: 150px;
+
+  /* Auth/Dashboard colors */
+  --color-danger: #ef4444;
+  --color-success-bg: #d1fae5;
+  --color-success-text: #065f46;
+  --color-success-border: #10b981;
+  --color-error-bg: #fee2e2;
+  --color-error-text: #991b1b;
+  --color-error-border: #ef4444;
+  --color-input-border: #e5e7eb;
+  --color-border: #e5e7eb;
+  --color-check: #10b981;
+}
+
+/* Reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Button Styles */
+.btn {
+  padding: 12px 30px;
+  border-radius: var(--btn-radius);
+  font-weight: 600;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-accent);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-outline-danger {
+  background: transparent;
+  border: 2px solid var(--color-danger);
+  color: var(--color-danger);
+}
+
+.btn-outline-danger:hover {
+  background: var(--color-danger);
+  color: var(--color-white);
+}
+
+.btn-light {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+.btn-light:hover {
+  background: #f8f9ff;
+}
+
+.btn-outline-light {
+  background: transparent;
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Message Styles */
+.message {
+  padding: 12px 20px;
+  border-radius: var(--btn-radius);
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.message.success {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-border);
+}
+
+.message.error {
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+  border: 1px solid var(--color-error-border);
+}
+
+.message.hidden {
+  display: none;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #374151;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--color-input-border);
+  border-radius: var(--btn-radius);
+  font-size: 16px;
+  transition: all 0.3s;
+  font-family: var(--font-sans);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+  border-color: var(--color-error-border);
+}
+
+.error-text {
+  display: block;
+  color: var(--color-error-border);
+  font-size: 14px;
+  margin-top: 5px;
+}
